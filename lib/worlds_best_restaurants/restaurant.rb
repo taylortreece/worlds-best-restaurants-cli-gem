@@ -7,8 +7,8 @@ class WorldsBestRestaurants::Restaurant
   def self.new_from_index_page(r)
     self.new(
       r.css("h2").text,
-      "https://www.theworlds50best.com#{r.css("a").attribute("href").text}",
-      r.css("h3").text,
+      "https://www.theworlds50best.com#{r.attribute("href").text}",
+      r.css("p")[1].text,
       r.css(".position").text
       )
   end
@@ -29,33 +29,39 @@ class WorldsBestRestaurants::Restaurant
     self.all[id-1]
   end
 
-  def best_dish
-    @best_dish ||= doc.css("div.c-4.nr.nt ul:nth-child(8) li").text
+  def intro_quote #DONE
+    @bintro_quote ||= doc.css("h3.intro-quote").text
     # @best_dish ||= doc.xpath("//div[@class='c-4 nr nt']/ul[3]/li").text
   end
 
   def food_style
-    @food_style ||= doc.css("div.c-4.nr.nt ul:nth-child(6) li").text
+    
+    @food_style ||= doc.css("div.content.profile").css('p')[6].text
     # @food_style ||= doc.xpath("//div[@class='c-4 nr nt']/ul[2]/li").text
   end
 
-  def contact
-    @contact ||= doc.css("div.c-4.nr.nt ul:nth-child(10) li:nth-child(1)").text.split("+").join(". Tel: +")
+  def contact #DONE
+    @contact ||= doc.css("p.location").text
     # @contact ||= doc.xpath("//div[@class='c-4 nr nt']/ul[4]/li[1]").text.split("+").join(". Tel: +")
   end
 
-  def head_chef
-    @head_chef ||= doc.css("div.c-4.nr.nt ul:nth-child(3) li").text.split(" (pictured)").join("")
+  def phone #DONE
+    @phone ||= doc.css("a.telephone").text
+    # @contact ||= doc.xpath("//div[@class='c-4 nr nt']/ul[4]/li[1]").text.split("+").join(". Tel: +")
+  end
+
+  def head_chef #DONE
+    @head_chef ||= doc.css("div.on-the-pass").css('p')[0].text
     # @head_chef ||= doc.xpath("//div[@class='c-4 nr nt']/ul[1]/li").text.split(" (pictured)").join("")
   end
 
-  def website_url
-    @website_url ||= doc.css("div.c-4.nr.nt ul:nth-child(10) li:nth-child(2) a").text
+  def website_url #DONE
+    @website_url ||= doc.css("a.website").text
     # @website_url ||= doc.xpath("//div[@class='c-4 nr nt']/ul[4]/li[2]/a").text
   end
 
-  def description
-    @description ||= doc.css("div.c-8.nl.nt > p:nth-child(6)").text
+  def description #DONE
+    @description ||= doc.css("div.content.profile").css('p')[4].text
     # @description ||= doc.xpath("//div[@class='c-8 nl nt']/p[3]").text
   end
 

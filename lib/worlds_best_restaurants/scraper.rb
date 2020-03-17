@@ -5,7 +5,7 @@ class WorldsBestRestaurants::Scraper
   end
 
   def scrape_restaurants_index
-     self.get_page.css("div#t1-50 li")
+     self.get_page.css("div[data-list='1-50'] a.item")
   end
 
   def make_restaurants

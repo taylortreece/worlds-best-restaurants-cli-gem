@@ -42,16 +42,23 @@ class WorldsBestRestaurants::CLI
     puts ""
     puts "----------- #{restaurant.name} - #{restaurant.position} -----------"
     puts ""
+    puts "#{restaurant.intro_quote}"
     puts "Location:           #{restaurant.location}"
     puts "Head Chef:          #{restaurant.head_chef}"
-    puts "Style of Food:      #{restaurant.food_style}"
-    puts "Standout Dish:      #{restaurant.best_dish}"
     puts "Contact:            #{restaurant.contact}"
+    puts "Phone:             #{restaurant.phone}"
     puts "Website:            #{restaurant.website_url}"
+
     puts ""
     puts "---------------Description--------------"
     puts ""
     puts "#{restaurant.description}"
+    puts ""
+
+    puts ""
+    puts "---------------About the Food--------------"
+    puts ""
+    puts "#{restaurant.food_style}"
     puts ""
   end
 
