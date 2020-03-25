@@ -56,7 +56,8 @@ class WorldsBestRestaurants::Restaurant
   end
 
   def website_url #DONE
-    @website_url ||= doc.css("a.website").text
+ 
+    @website_url ||= doc.css("a.website").attr('href').value
     # @website_url ||= doc.xpath("//div[@class='c-4 nr nt']/ul[4]/li[2]/a").text
   end
 
